@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Influencer Dashboard</h1>
+    
+    <h2>Ad Requests</h2>
+    {% if ad_requests %}
+        <ul>
+            {% for ad_request in ad_requests %}
+                <li>Campaign: {{ ad_request.campaign.name }} - Status: {{ ad_request.status }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No ad requests found.</p>
+    {% endif %}
+    
+    <h2>Public Campaigns</h2>
+    {% if public_campaigns %}
+        <ul>
+            {% for campaign in public_campaigns %}
+                <li>{{ campaign.name }} - Budget: {{ campaign.budget }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No public campaigns found.</p>
+    {% endif %}
+</body>
+</html>

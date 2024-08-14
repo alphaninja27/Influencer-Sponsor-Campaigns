@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">{{ title }}</h1>
+        <hr>
+        <h2>Pending Sponsor Approvals</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Company Name</th>
+                    <th>Industry</th>
+                    <th>Budget</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sponsor in sponsors %}
+                    {% if not sponsor.approved %}
+                        <tr>
+                            <td>{{ sponsor.id }}</td>
+                            <td>{{ sponsor.username }}</td>
+                            <td>{{ sponsor.email }}</td>
+                            <td>{{ sponsor.company_name }}</td>
+                            <td>{{ sponsor.industry }}</td>
+                            <td>{{ sponsor.budget }}</td>
+                            <td>
+                                <form action="{{ url_for('main.approve_sponsor', sponsor_id=sponsor.id) }}" method="POST">
+                                    <button type="submit" class="btn btn-success btn-sm">Approve</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

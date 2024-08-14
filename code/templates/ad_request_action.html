@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h2>Ad Request Action</h2>
+    <p>Campaign ID: {{ ad_request.campaign_id }}</p>
+    <p>Current Payment: {{ ad_request.payment_amount }}</p>
+    <p>Status: {{ ad_request.status }}</p>
+
+    <h3>Negotiate Payment</h3>
+    <form method="POST" action="">
+        {{ negotiation_form.hidden_tag() }}
+        <div>{{ negotiation_form.payment_amount.label }} {{ negotiation_form.payment_amount() }}</div>
+        <div>{{ negotiation_form.submit() }}</div>
+    </form>
+
+    <h3>Accept or Reject</h3>
+    <form method="POST" action="">
+        {{ action_form.hidden_tag() }}
+        <div>{{ action_form.accept() }}</div>
+        <div>{{ action_form.reject() }}</div>
+    </form>
+{% endblock %}

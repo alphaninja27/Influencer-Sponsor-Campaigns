@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h2>Ad Requests</h2>
+    <ul>
+    {% for ad_request in ad_requests %}
+        <li>
+            <a href="{{ url_for('main.ad_request_action', ad_request_id=ad_request.id) }}">
+                Campaign ID: {{ ad_request.campaign_id }} - Status: {{ ad_request.status }} - Payment: {{ ad_request.payment_amount }}
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}
